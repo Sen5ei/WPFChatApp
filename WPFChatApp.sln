@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFChatApp", "WPFChatApp\WPFChatApp.csproj", "{A400A5B8-4641-4FC4-ABCA-47F64D31EAD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A400A5B8-4641-4FC4-ABCA-47F64D31EAD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A400A5B8-4641-4FC4-ABCA-47F64D31EAD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A400A5B8-4641-4FC4-ABCA-47F64D31EAD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A400A5B8-4641-4FC4-ABCA-47F64D31EAD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {526C96F1-6AE0-4A9F-BC81-8A4D965897A5}
+	EndGlobalSection
+EndGlobal
