@@ -21,7 +21,13 @@
 
     <Color x:Key="LogoBlue">#3099c5</Color>
     <SolidColorBrush x:Key="LogoBlueBrush" Color="{StaticResource LogoBlue}"/>
-    
+
+    <Color x:Key="LogoLightBlue">#45b6e5</Color>
+    <SolidColorBrush x:Key="LogoLightBlueBrush" Color="{StaticResource LogoLightBlue}"/>
+
+    <Color x:Key="LogoDarkBlue">#0c6991</Color>
+    <SolidColorBrush x:Key="LogoDarkBlueBrush" Color="{StaticResource LogoDarkBlue}"/>
+
     <Color x:Key="LogoOrange">#ffa800</Color>
     <SolidColorBrush x:Key="LogoOrangeBrush" Color="{StaticResource LogoOrange}"/>
     
