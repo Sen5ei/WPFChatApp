@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WPFChatApp
+namespace WPFChatApp.Core
 {
     /// <summary>
     /// A view model fore the overview chat list

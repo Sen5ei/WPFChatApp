@@ -1,4 +1,4 @@
-﻿namespace WPFChatApp
+﻿namespace WPFChatApp.Core
 {
     /// <summary>
     /// The design-time data for a <see cref="ChatListItemViewModel"/>

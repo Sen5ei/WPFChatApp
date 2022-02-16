@@ -18,14 +18,18 @@ using WPFChatApp.Core;
 namespace WPFChatApp
 {
     /// <summary>
-    /// Interaction logic for ChatPage.xaml
+    /// Interaction logic for RegisterPage.xaml
     /// </summary>
-    public partial class ChatPage : BasePage<LoginViewModel>
+    public partial class RegisterPage : BasePage<LoginViewModel>, IHavePassword
     {
-        public ChatPage()
+        public RegisterPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// The secure password for this login page
+        /// </summary>
+        public SecureString SecurePassword => PasswordText.SecurePassword;
     }
 }

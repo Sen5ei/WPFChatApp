@@ -1,4 +1,4 @@
-﻿namespace WPFChatApp
+﻿namespace WPFChatApp.Core
 {
     /// <summary>
     /// A view model fore each chat list item in the overview chat list

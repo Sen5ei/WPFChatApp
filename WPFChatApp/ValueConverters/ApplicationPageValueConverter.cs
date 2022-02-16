@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using WPFChatApp.Core;
 
 namespace WPFChatApp
 {
@@ -16,6 +17,9 @@ namespace WPFChatApp
             {
                 case ApplicationPage.Login:
                     return new LoginPage();
+
+                case ApplicationPage.Register:
+                    return new RegisterPage();
 
                 case ApplicationPage.Chat:
                     return new ChatPage();
