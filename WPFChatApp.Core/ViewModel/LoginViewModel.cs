@@ -78,7 +78,7 @@ namespace WPFChatApp.Core
         public async Task RegisterAsync()
         {
             // TODO: Go to register page
-            //((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = ApplicationPage.Register;
+            IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Register;
 
             await Task.Delay(1);
         }
