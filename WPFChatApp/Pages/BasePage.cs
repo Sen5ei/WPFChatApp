@@ -8,20 +8,10 @@ using WPFChatApp.Core;
 namespace WPFChatApp
 {
     /// <summary>
-    /// A base page for all pages to gain base functionality
+    /// The base page for all pages to gain base functionality
     /// </summary>
-    public class BasePage<VM> : Page
-        where VM : BaseViewModel, new()
+    public class BasePage : Page
     {
-        #region Private Member
-
-        /// <summary>
-        /// The View Model associated with this page
-        /// </summary>
-        private VM mViewModel;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -37,27 +27,13 @@ namespace WPFChatApp
         /// <summary>
         /// The time any slide animation takes to complete
         /// </summary>
-        public float SlideSeconds { get; set; } = 0.8f;
+        public float SlideSeconds { get; set; } = 0.4f;
 
         /// <summary>
-        /// The View Model associated with this page
+        /// A flag to indicate if this page should animate out on load
+        /// Useful for when we are moving the page to another frame
         /// </summary>
-        public VM ViewModel
-        {
-            get => mViewModel;
-            set
-            {
-                // If nothing has changed, return
-                if (mViewModel == value)
-                    return;
-
-                // Update the value
-                mViewModel = value;
-
-                // Set the data context for this page
-                DataContext = mViewModel;
-            }
-        }
+        public bool ShouldAnimateOut { get; set; }
 
         #endregion
 
@@ -73,10 +49,7 @@ namespace WPFChatApp
                 Visibility = Visibility.Collapsed;
 
             // Listen out for the page loading
-            Loaded += Async;
-
-            // Create a default view model
-            ViewModel = new VM();
+            Loaded += BasePage_LoadedAsync;
         }
 
         #endregion
@@ -88,10 +61,16 @@ namespace WPFChatApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Async(object sender, System.Windows.RoutedEventArgs e)
+        private async void BasePage_LoadedAsync(object sender, System.Windows.RoutedEventArgs e)
         {
-            // Animate the page in
-            await AnimateInAsync();
+            // If we are setup to animate out on load
+            if (ShouldAnimateOut)
+                // Animate out the page
+                await AnimateOutAsync();
+            // Otherwise...
+            else
+                // Animate the page in
+                await AnimateInAsync();
         }
 
         /// <summary>
@@ -136,6 +115,59 @@ namespace WPFChatApp
 
                     break;
             }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// A base page with added VieWModel support
+    /// </summary>
+    public class BasePage<VM> : BasePage
+        where VM : BaseViewModel, new()
+    {
+        #region Private Member
+
+        /// <summary>
+        /// The View Model associated with this page
+        /// </summary>
+        private VM mViewModel;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The View Model associated with this page
+        /// </summary>
+        public VM ViewModel
+        {
+            get => mViewModel;
+            set
+            {
+                // If nothing has changed, return
+                if (mViewModel == value)
+                    return;
+
+                // Update the value
+                mViewModel = value;
+
+                // Set the data context for this page
+                DataContext = mViewModel;
+            }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public BasePage() : base()
+        {
+            // Create a default view model
+            ViewModel = new VM();
         }
 
         #endregion
