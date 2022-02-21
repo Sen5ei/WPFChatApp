@@ -79,7 +79,7 @@
         <Setter Property="Background" Value="{StaticResource LogoOrangeBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}"/>
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}"/>
         <Setter Property="Padding" Value="50 10"/>
         <Setter Property="Margin" Value="0 10"/>
@@ -100,12 +100,14 @@
                                    Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisibilityConverter}}"
                                    Focusable="False" 
                                    FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    Margin="{TemplateBinding Padding}" 
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
                             <TextBlock Style="{StaticResource SpinningText}"
+                                       FontSize="{TemplateBinding FontSize}"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                        Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}"/>
@@ -142,7 +144,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}"/>
         <Setter Property="Padding" Value="50 10"/>
         <Setter Property="Margin" Value="0 10"/>
@@ -159,6 +161,7 @@
                         <TextBlock Text="{TemplateBinding Content}" 
                                    Focusable="False" 
                                    FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                    Margin="{TemplateBinding Padding}" 
                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
@@ -183,7 +186,7 @@
         <Setter Property="Background" Value="{StaticResource LogoBlueBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}"/>
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
         <Setter Property="Padding" Value="30"/>
         <Setter Property="Margin" Value="0"/>
@@ -201,12 +204,13 @@
                         <Grid>
                             <Viewbox>
                                 <TextBlock Text="{TemplateBinding Content}" 
-                                   Focusable="False" 
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                   Margin="{TemplateBinding Padding}" 
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                           Focusable="False" 
+                                           FontFamily="{TemplateBinding FontFamily}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                           Margin="{TemplateBinding Padding}" 
+                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Viewbox>
 
                         </Grid>

@@ -22,7 +22,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <!-- Outer border with the dropshadow margin -->
-                        <Border Margin="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
                             
                             <!-- Main window outline -->
                             <Grid>
@@ -81,7 +81,7 @@
                                         <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
-                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeRegular}" Margin="0,0,0,-5" TextAlignment="Center">
+                                                <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeLarge}" Margin="0,0,0,-5" TextAlignment="Center">
                                                     <Run Text="C" Foreground="{StaticResource LogoOrangeBrush}"/><Run Text="H" Foreground="{StaticResource LogoBlueBrush}"/><Run Text="A" Foreground="{StaticResource LogoRedBrush}"/><Run Text="T" Foreground="{StaticResource LogoGreenBrush}"/>
                                                 </TextBlock>
                                                 <TextBlock Text="WPF Chat App" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center"/>
