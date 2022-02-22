@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 using System;
 using WPFChatApp.Core;
+using System.ComponentModel;
 
 namespace WPFChatApp
 {
     /// <summary>
     /// The base page for all pages to gain base functionality
     /// </summary>
-    public class BasePage : Page
+    public class BasePage : UserControl
     {
         #region Public Properties
 
@@ -44,6 +45,10 @@ namespace WPFChatApp
         /// </summary>
         public BasePage()
         {
+            // Don't bother animating in design time
+            if (DesignerProperties.GetIsInDesignMode(this))
+                return;
+
             // If we are animating in, hide to begin with
             if (PageLoadAnimation != PageAnimation.None)
                 Visibility = Visibility.Collapsed;
@@ -89,7 +94,7 @@ namespace WPFChatApp
                 case PageAnimation.SlideAndFadeInFromRight:
 
                     // Start the animation
-                    await this.SlideAndFadeInFromRightAsync(SlideSeconds);
+                    await this.SlideAndFadeInFromRightAsync(SlideSeconds, width: (int)Application.Current.MainWindow.Width);
 
                     break;
             }

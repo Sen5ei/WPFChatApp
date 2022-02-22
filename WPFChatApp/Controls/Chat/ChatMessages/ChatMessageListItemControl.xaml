@@ -8,7 +8,6 @@
              mc:Ignorable="d" 
              d:DesignWidth="300">
     <Border Padding="5" 
-            Background="{StaticResource LogoBlueBrush}"
             d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
 
@@ -73,7 +72,7 @@
                     <TextBlock VerticalAlignment="Center"
                                TextWrapping="Wrap"
                                FontFamily="{StaticResource LatoRegular}"
-                               Foreground="{StaticResource LogoDarkBlueBrush}"
+                               Foreground="{StaticResource ChatDarkBlueBrush}"
                                Text="{Binding Message}" />
 
                 </Border>
@@ -92,23 +91,19 @@
                 <!-- Time containers -->
                 <StackPanel Name="ExtraDetails" 
                             Grid.Row="2"
-                            Opacity="0"
+                            HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}, ConverterParameter=True}"
                             Orientation="Horizontal">
 
                     <!-- Sent time -->
-                    <TextBlock Grid.Row="2" 
-                               Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"
+                    <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"
                                Foreground="{StaticResource ForegroundLightBrush}"
-                               HorizontalAlignment="Right"
                                FontSize="{StaticResource FontSizeSmall}"
                                FontFamily="{StaticResource LatoRegular}"
                                Margin="0 0 15 0"/>
 
                     <!-- Read time -->
-                    <TextBlock Grid.Row="2" 
-                               Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
-                               Foreground="{StaticResource LogoDarkBlueBrush}"
-                               HorizontalAlignment="Right"
+                    <TextBlock Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
+                               Foreground="{StaticResource ChatDarkBlueBrush}"
                                FontSize="{StaticResource FontSizeSmall}"
                                FontFamily="{StaticResource LatoRegular}"/>
                     

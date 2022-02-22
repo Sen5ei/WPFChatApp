@@ -11,7 +11,7 @@ namespace WPFChatApp
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Application.Current.FindResource("LogoVeryLightBlueBrush") : Application.Current.FindResource("ForegroundLightBrush");
+            return (bool)value ? Application.Current.FindResource("ChatVeryLightBlueBrush") : Application.Current.FindResource("ForegroundLightBrush");
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

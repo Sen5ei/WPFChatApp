@@ -82,7 +82,7 @@
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
                                                 <TextBlock FontFamily="{StaticResource LatoBold}" FontSize="{StaticResource FontSizeLarge}" Margin="0,0,0,-5" TextAlignment="Center">
-                                                    <Run Text="C" Foreground="{StaticResource LogoOrangeBrush}"/><Run Text="H" Foreground="{StaticResource LogoBlueBrush}"/><Run Text="A" Foreground="{StaticResource LogoRedBrush}"/><Run Text="T" Foreground="{StaticResource LogoGreenBrush}"/>
+                                                    <Run Text="C" Foreground="{StaticResource ChatOrangeBrush}"/><Run Text="H" Foreground="{StaticResource ChatBlueBrush}"/><Run Text="A" Foreground="{StaticResource ChatRedBrush}"/><Run Text="T" Foreground="{StaticResource ChatGreenBrush}"/>
                                                 </TextBlock>
                                                 <TextBlock Text="WPF Chat App" Foreground="{StaticResource ForegroundDarkBrush}" TextAlignment="Center"/>
                                             </StackPanel>
@@ -118,7 +118,7 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Border Background="{StaticResource LogoBlueBrush}">
+    <Border Background="{StaticResource ChatBlueBrush}">
         <Grid>
 
             <Grid.ColumnDefinitions>
