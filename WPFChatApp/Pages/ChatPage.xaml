@@ -84,7 +84,7 @@
                      BorderThickness="0"
                      FontSize="{StaticResource FontSizeRegular}"
                      VerticalAlignment="Center"
-                     Padding="0 10"
+                     Padding="0 10 10 10"
                      AcceptsReturn="True"
                      AcceptsTab="True" 
                      VerticalScrollBarVisibility="Auto"/>
