@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         x:Name="AppWindow"
         WindowStyle="None"
-        ResizeMode="CanResize"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Icon="Images/Logo/logo-small.png"
