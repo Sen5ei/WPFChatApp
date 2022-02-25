@@ -68,6 +68,9 @@ namespace WPFChatApp
 
             // Wait for it and finish
             await Task.Delay((int)seconds * 1000);
+
+            // Make element invisible
+            element.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -130,6 +133,9 @@ namespace WPFChatApp
 
             // Wait for it and finish
             await Task.Delay((int)seconds * 1000);
+
+            // Make element invisible
+            element.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -192,6 +198,9 @@ namespace WPFChatApp
 
             // Wait for it and finish
             await Task.Delay((int)seconds * 1000);
+
+            // Make element invisible
+            element.Visibility = Visibility.Hidden;
         }
 
         #endregion
