@@ -17,6 +17,11 @@ namespace WPFChatApp
         private Window mWindow;
 
         /// <summary>
+        /// The window resizer helper that keeps the window size correct in various states
+        /// </summary>
+        private WindowResizer mWindowResizer;
+
+        /// <summary>
         /// The margin around the window to allow for a drop shadow
         /// </summary>
         private int mOuterMarginSize = 10;
@@ -160,10 +165,10 @@ namespace WPFChatApp
             MenuCommand = new RelayCommand(() => SystemCommands.ShowSystemMenu(mWindow, GetMousePosition()));
 
             // Fix window resize issue
-            var resizer = new WindowResizer(mWindow);
+            mWindowResizer = new WindowResizer(mWindow);
 
             // Listen out for dock changes
-            resizer.WindowDockChanged += (dock) =>
+            mWindowResizer.WindowDockChanged += (dock) =>
             {
                 // Store last position
                 mDockPosition = dock;
@@ -187,7 +192,10 @@ namespace WPFChatApp
             var position = Mouse.GetPosition(mWindow);
 
             // Add the window position so its a "ToScreen"
-            return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
+            if (mWindow.WindowState == WindowState.Maximized)
+                return new Point(position.X + mWindowResizer.CurrentMonitorSize.Left, position.Y + mWindowResizer.CurrentMonitorSize.Top);
+            else
+                return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
         }
 
         /// <summary>
