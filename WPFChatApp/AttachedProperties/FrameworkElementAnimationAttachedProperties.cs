@@ -154,4 +154,16 @@ namespace WPFChatApp
                 await element.FadeOutAsync(FirstLoad ? 0 : 0.3f);
         }
     }
+
+    /// <summary>
+    /// Animates a framework element sliding it from right to left and repeating forever
+    /// </summary>
+    public class AnimateMarqueeProperty : AnimateBaseProperty<AnimateMarqueeProperty>
+    {
+        protected override void DoAnimation(FrameworkElement element, bool value)
+        {
+            // Animate in
+            element.MarqueeAsync(FirstLoad ? 0 : 3f);
+        }
+    }
 }
