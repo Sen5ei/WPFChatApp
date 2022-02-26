@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace WPFChatApp.Core
 {
@@ -13,6 +8,30 @@ namespace WPFChatApp.Core
     public class SettingsViewModel : BaseViewModel
     {
         #region Public Properties
+
+        /// <summary>
+        /// The current users name
+        /// </summary>
+        public TextEntryViewModel Name { get; set; }
+
+        /// <summary>
+        /// The current users username
+        /// </summary>
+        public TextEntryViewModel Username { get; set; }
+
+        /// <summary>
+        /// The current users password
+        /// </summary>
+        public TextEntryViewModel Password { get; set; }
+
+        /// <summary>
+        /// The current users email
+        /// </summary>
+        public TextEntryViewModel Email { get; set; }
+
+        #endregion
+
+        #region Public Commands
 
         /// <summary>
         /// The command to open the settings menu
