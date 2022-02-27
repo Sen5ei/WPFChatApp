@@ -55,6 +55,12 @@ namespace WPFChatApp.Core
             // Create commands
             OpenCommand = new RelayCommand(Open);
             CloseCommand = new RelayCommand(Close);
+
+            // TODO: Remove this with real information pulled from our database in future
+            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Ognjen Sredic" };
+            Username = new TextEntryViewModel { Label = "Username", OriginalText = "ognjen" };
+            Password = new TextEntryViewModel { Label = "Password", OriginalText = "********" };
+            Email = new TextEntryViewModel { Label = "Email", OriginalText = "ognjensredic@gmail.com" };
         }
 
         #endregion

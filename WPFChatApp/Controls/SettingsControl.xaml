@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFChatApp"
+             xmlns:core="clr-namespace:WPFChatApp.Core;assembly=WPFChatApp.Core"
+             d:DataContext="{x:Static core:SettingsDesignModel.Instance}"
              mc:Ignorable="d">
     <Border Background="{StaticResource ForegroundLightBrush}"
             Padding="15">
@@ -77,11 +79,15 @@
                 </Grid>
 
                 <!-- Profile Details -->
-                <StackPanel Grid.Column="1">
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
-                    <local:TextEntryControl />
+                <StackPanel Grid.Column="1"
+                            local:TextEntryWidthMatcherProperty.Value="True">
+                    
+                    
+                    
+                    <local:TextEntryControl DataContext="{Binding Name}" />
+                    <local:TextEntryControl DataContext="{Binding Username}" />
+                    <local:TextEntryControl DataContext="{Binding Password}" />
+                    <local:TextEntryControl DataContext="{Binding Email}" />
                 </StackPanel>
                 
 
