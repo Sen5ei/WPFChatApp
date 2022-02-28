@@ -65,7 +65,7 @@ namespace WPFChatApp
         /// <summary>
         /// How close to the edge the window has to be to be detected as at the edge of the screen
         /// </summary>
-        private int mEdgeTolerance = 8;
+        private int mEdgeTolerance = 1;
 
         /// <summary>
         /// The transform matrix used to convert WPF sizes to screen pixels
@@ -104,6 +104,11 @@ namespace WPFChatApp
         /// Called when the window dock position changes
         /// </summary>
         public event Action<WindowDockPosition> WindowDockChanged = (dock) => { };
+
+        /// <summary>
+        /// Called when the window has been moved/dragged and then finished
+        /// </summary>
+        public event Action WindowFinishedMove = () => { };
 
         #endregion
 
@@ -277,9 +282,14 @@ namespace WPFChatApp
             switch (msg)
             {
                 // Handle the GetMinMaxInfo of the Window
-                case 0x0024:/* WM_GETMINMAXINFO */
+                case 0x0024: // WM_GETMINMAXINFO
                     WmGetMinMaxInfo(hwnd, lParam);
                     handled = true;
+                    break;
+
+                // Once the window has finished being moved
+                case 0x0232: // WM_EXITSIZEMOVE
+                    WindowFinishedMove();
                     break;
             }
 
