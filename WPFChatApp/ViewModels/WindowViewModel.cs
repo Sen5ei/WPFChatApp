@@ -58,7 +58,7 @@ namespace WPFChatApp
         /// <summary>
         /// The size of the resize border around the window
         /// </summary>
-        public int ResizeBorder => mWindow.WindowState == WindowState.Maximized ? 0 : 10;
+        public int ResizeBorder => mWindow.WindowState == WindowState.Maximized ? 0 : 4;
 
         /// <summary>
         /// The size of the resize border around the window, taking into account the outer margin
