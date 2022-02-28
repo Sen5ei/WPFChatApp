@@ -117,16 +117,20 @@
                     Command="{Binding AttachmentButtonCommand}"
                     Foreground="{StaticResource ForegroundDarkBrush}"/>
 
-            <!-- Text entry box -->
-            <TextBox Grid.Column="1"
+            <!-- Message box -->
+            <TextBox x:Name="MessageText"
+                     Grid.Column="1"
                      Tag="Write message..."
+                     local:IsFocusedProperty.Value="True"
+                     Text="{Binding PendingMessageText, UpdateSourceTrigger=PropertyChanged}"
                      BorderThickness="0"
                      FontSize="{StaticResource FontSizeRegular}"
                      VerticalAlignment="Center"
                      Padding="0 10 10 10"
-                     AcceptsReturn="True"
                      AcceptsTab="True" 
-                     VerticalScrollBarVisibility="Auto"/>
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     PreviewKeyDown="MessageText_PreviewKeyDown"/>
 
             <!-- Additional buttons -->
             <StackPanel Grid.Column="2"
@@ -143,6 +147,8 @@
                 <!-- Send button -->
                 <Button Content="Send"
                         Padding="8"
+                        IsDefault="True"
+                        Focusable="False"
                         Command="{Binding SendCommand}"
                         Background="{StaticResource ChatGreenBrush}"
                         FontSize="{StaticResource FontSizeRegular}"/>
