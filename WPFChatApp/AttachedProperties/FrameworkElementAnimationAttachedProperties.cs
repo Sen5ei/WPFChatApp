@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WPFChatApp
 {
@@ -83,6 +84,34 @@ namespace WPFChatApp
         /// <param name="element">The element</param>
         /// <param name="value">The value</param>
         protected virtual void DoAnimation(FrameworkElement element, bool value, bool firstLoad) { }
+    }
+
+    /// <summary>
+    /// Fades in an image once the source changes
+    /// </summary>
+    public class FadeInImageOnLoadProperty : AnimateBaseProperty<FadeInImageOnLoadProperty>
+    {
+        public override void OnValueUpdated(DependencyObject sender, object value)
+        {
+            // Make sure we have an image
+            if (!(sender is Image image))
+                return;
+
+            // If we want to animate in...
+            if ((bool)value)
+                // Listen for target change
+                image.TargetUpdated += Image_TargetUpdatedAsync;
+            // Otherwise
+            else
+                // Make sure we unhooked
+                image.TargetUpdated -= Image_TargetUpdatedAsync;
+        }
+
+        private async void Image_TargetUpdatedAsync(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            // Fade in image
+            await (sender as Image).FadeInAsync(false);
+        }
     }
 
     /// <summary>
