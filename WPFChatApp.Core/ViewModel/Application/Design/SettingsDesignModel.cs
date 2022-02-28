@@ -25,7 +25,7 @@ namespace WPFChatApp.Core
         {
             Name = new TextEntryViewModel { Label = "Name", OriginalText = "Ognjen Sredic" };
             Username = new TextEntryViewModel { Label = "Username", OriginalText = "ognjen" };
-            Password = new TextEntryViewModel { Label = "Password", OriginalText = "********" };
+            Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
             Email = new TextEntryViewModel { Label = "Email", OriginalText = "ognjensredic@gmail.com" };
         }
 

@@ -62,7 +62,17 @@ namespace WPFChatApp.Core
         {
             await RunCommandAsync(() => LoginIsRunning, async () =>
             {
+                // Fake a login...
                 await Task.Delay(1000);
+
+                // OK successfully logged in... now get users data
+                // TODO: Ask server for users info
+
+                // TODO: Remove this with real information pulled from our database in future
+                IoC.Settings.Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Ognjen Sredic {DateTime.Now.ToLocalTime()}" };
+                IoC.Settings.Username = new TextEntryViewModel { Label = "Username", OriginalText = "ognjen" };
+                IoC.Settings.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
+                IoC.Settings.Email = new TextEntryViewModel { Label = "Email", OriginalText = "ognjensredic@gmail.com" };
 
                 // Go to chat page
                 IoC.Application.GoToPage(ApplicationPage.Chat);
