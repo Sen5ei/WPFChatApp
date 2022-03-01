@@ -240,7 +240,7 @@ namespace WPFChatApp
         /// </summary>
         /// <param name="storyboard">The stroyboard to add the animation to</param>
         /// <param name="seconds">The time the animation will take</param>
-        public static void AddFadeIn(this Storyboard storyboard, float seconds)
+        public static void AddFadeIn(this Storyboard storyboard, float seconds, bool from = false)
         {
             // Create the margin animate from right
             var animation = new DoubleAnimation
@@ -248,6 +248,10 @@ namespace WPFChatApp
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
                 To = 1
             };
+
+            // Animate from if required
+            if (from)
+                animation.From = 0;
 
             // Set the target property name
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
