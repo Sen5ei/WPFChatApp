@@ -26,6 +26,9 @@ namespace WPFChatApp
             // Setup the main application
             ApplicationSetup();
 
+            // Log it
+            IoC.Logger.Log("Application starting...", LogLevel.Debug);
+
             // Show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
@@ -41,6 +44,9 @@ namespace WPFChatApp
 
             // Bind a UI Manager
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
+
+            // Bind a logger
+            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory());
         }
     }
 }
