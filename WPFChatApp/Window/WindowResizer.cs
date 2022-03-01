@@ -82,6 +82,11 @@ namespace WPFChatApp
         /// </summary>
         private WindowDockPosition mLastDock = WindowDockPosition.Undocked;
 
+        /// <summary>
+        /// A flag indicating if the window is currently being moved/dragged
+        /// </summary>
+        private bool mBeingMoved = false;
+
         #endregion
 
         #region DLL Imports
@@ -96,6 +101,9 @@ namespace WPFChatApp
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr MonitorFromPoint(POINT pt, MonitorOptions dwFlags);
 
+        [DllImport("user32.dll")]
+        static extern IntPtr MonitorFromWindow(IntPtr hwnd, MonitorOptions dwFlags);
+
         #endregion
 
         #region Public Events
@@ -104,6 +112,11 @@ namespace WPFChatApp
         /// Called when the window dock position changes
         /// </summary>
         public event Action<WindowDockPosition> WindowDockChanged = (dock) => { };
+
+        /// <summary>
+        /// Called when the window starts being moved/dragged
+        /// </summary>
+        public event Action WindowStartedMove = () => { };
 
         /// <summary>
         /// Called when the window has been moved/dragged and then finished
@@ -287,8 +300,15 @@ namespace WPFChatApp
                     handled = true;
                     break;
 
+                // Once the window starts being moved
+                case 0x0231: // WM_ENTERSIZEMOVE
+                    mBeingMoved = true;
+                    WindowStartedMove();
+                    break;
+
                 // Once the window has finished being moved
                 case 0x0232: // WM_EXITSIZEMOVE
+                    mBeingMoved = false;
                     WindowFinishedMove();
                     break;
             }
@@ -310,7 +330,13 @@ namespace WPFChatApp
             GetCursorPos(out POINT lMousePosition);
 
             // Now get the current screen
-            var lCurrentScreen = MonitorFromPoint(lMousePosition, MonitorOptions.MONITOR_DEFAULTTONEAREST);
+            var lCurrentScreen = mBeingMoved ?
+                // If being dragged get it from the mouse position
+                MonitorFromPoint(lMousePosition, MonitorOptions.MONITOR_DEFAULTTONULL) :
+                // Otherwise get it from the window position (for example being moved via Win + Arrow)
+                // in case the mouse is on another monitor
+                MonitorFromWindow(hwnd, MonitorOptions.MONITOR_DEFAULTTONULL);
+
             var lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
 
             // Try and get the current screen information
@@ -359,6 +385,11 @@ namespace WPFChatApp
                 //         window width on a secondary monitor if larger than the
                 //         primary then goes too large
                 //
+                //          lMmi.PointMaxPosition.X = 0;
+                //          lMmi.PointMaxPosition.Y = 0;
+                //          lMmi.PointMaxSize.X = lCurrentScreenInfo.RCMonitor.Right - lCurrentScreenInfo.RCMonitor.Left;
+                //          lMmi.PointMaxSize.Y = lCurrentScreenInfo.RCMonitor.Bottom - lCurrentScreenInfo.RCMonitor.Top;
+                //
                 //         Instead we now just add a margin to the window itself
                 //         to compensate when maximized
                 // 
@@ -368,15 +399,6 @@ namespace WPFChatApp
 
                 // Size size limits (used by Windows when maximized)
                 // relative to 0,0 being the current screens top-left corner
-                //
-                //  - Position
-                //lMmi.PointMaxPosition.X = currentX;
-                //lMmi.PointMaxPosition.Y = currentY;
-
-                //
-                // - Size
-                //lMmi.PointMaxSize.X = currentWidth;
-                //lMmi.PointMaxSize.Y = currentHeight;
 
                 // Set to primary monitor size
                 lMmi.PointMaxPosition.X = lPrimaryScreenInfo.RCMonitor.Left;
