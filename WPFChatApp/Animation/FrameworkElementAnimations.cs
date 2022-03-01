@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using WPFChatApp.Core;
 
 namespace WPFChatApp
 {
@@ -201,7 +202,7 @@ namespace WPFChatApp
             element.Unloaded += (s, e) => unloaded = true;
 
             // Run a loop off the caller thread
-            Task.Run(async () =>
+            IoC.Task.Run(async () =>
             {
                 // While the element is still available, recheck the size
                 // after every loop in case the container was resized
