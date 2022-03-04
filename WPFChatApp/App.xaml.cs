@@ -41,7 +41,9 @@ namespace WPFChatApp
         private void ApplicationSetup()
         {
             // Setup the Dna Framework
-            Framework.Startup();
+            new DefaultFrameworkConstruction()
+                .UseFileLogger()
+                .Build();
 
             //Setup IoC
             IoC.Setup();
