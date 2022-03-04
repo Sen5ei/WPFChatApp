@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dna;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -39,6 +40,9 @@ namespace WPFChatApp
         /// </summary>
         private void ApplicationSetup()
         {
+            // Setup the Dna Framework
+            Framework.Startup();
+
             //Setup IoC
             IoC.Setup();
             
@@ -47,7 +51,7 @@ namespace WPFChatApp
             {
                 // TODO: Add ApplicationSettings so we could set/edit a log location
                 //       For now just log to the path where this application is running
-                new FileLogger("log.txt")
+                new Core.FileLogger("Oldlog.txt")
             }));
 
             // Add our task manager

@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;RELEASE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -286,6 +287,9 @@
     <Resource Include="Fonts\Lato-Thin.ttf" />
     <Resource Include="Fonts\Lato-ThinItalic.ttf" />
     <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -304,6 +308,10 @@
     <Resource Include="Images\Backgrounds\emoji-background.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dna.Framework\Dna.Framework\Dna.Framework.csproj">
+      <Project>{f71f37f0-1967-4a9f-9521-e919a6cb32b8}</Project>
+      <Name>Dna.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPFChatApp.Core\WPFChatApp.Core.csproj">
       <Project>{b4a8a4b2-d1ff-4259-b42c-e42483203c16}</Project>
       <Name>WPFChatApp.Core</Name>
