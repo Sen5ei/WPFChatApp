@@ -43,6 +43,10 @@ namespace WPFChatApp.Web.Server
 
         #endregion
 
+        /// <summary>
+        /// Basic welcome page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             // Make sure we have the database
@@ -145,6 +149,12 @@ namespace WPFChatApp.Web.Server
         {
             await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
             return Content("done");
+        }
+
+        [Route("test")]
+        public SettingsDataModel Test([FromBody]SettingsDataModel model)
+        {
+            return new SettingsDataModel { Id = "Some Id", Name = "Ognjen", Value = "10" };
         }
     }
 }
