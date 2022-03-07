@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Dna;
 using System.Security;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace WPFChatApp.Core
@@ -12,6 +11,11 @@ namespace WPFChatApp.Core
     public class RegisterViewModel : BaseViewModel
     {
         #region Public Properties
+
+        /// <summary>
+        /// The username of the user
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         ///  The email of the user
@@ -62,7 +66,27 @@ namespace WPFChatApp.Core
         {
             await RunCommandAsync(() => RegisterIsRunning, async () =>
             {
-                await Task.Delay(5000);
+                // Call the server and attempt to register with the provided credentials
+                // TODO: Move all URLs and API routes to static class in core
+                var result = await WebRequests.PostAsync<ApiResponse<RegisterResultApiModel>>(
+                    "http://localhost:5000/api/register",
+                    new RegisterCredentialsApiModel
+                    {
+                        Username = Username,
+                        Email = Email,
+                        Password = (parameter as IHavePassword).SecurePassword.Unsecure()
+                    });
+
+                // If the response has an error...
+                if (await result.DisplayErrorIfFailedAsync("Register Failed"))
+                    // We are done
+                    return;
+
+                // OK successfully registered (and logged in)... now get users data
+                var loginResult = result.ServerResponse.Response;
+
+                // Let the application view model handle what happens with the successful login
+                await IoC.Application.HandleSuccessfulLoginAsync(loginResult);
             });
         }
 
