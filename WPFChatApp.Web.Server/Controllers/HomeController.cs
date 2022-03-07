@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WPFChatApp.Web.Server
 {
+    /// <summary>
+    /// /Manages the standard web server pages
+    /// </summary>
     public class HomeController : Controller
     {
         #region Protected Members
@@ -112,6 +115,17 @@ namespace WPFChatApp.Web.Server
         }
 
         /// <summary>
+        /// Log the user out
+        /// </summary>
+        /// <returns></returns>
+        [Route("logout")]
+        public async Task<IActionResult> SignOutAsync()
+        {
+            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            return Content("done");
+        }
+
+        /// <summary>
         /// An auto-login page for testing
         /// </summary>
         /// <param name="returnUrl">The url to return to if successfully logged in</param>
@@ -138,17 +152,6 @@ namespace WPFChatApp.Web.Server
             }
 
             return Content("Failed to login", "text/html");
-        }
-
-        /// <summary>
-        /// Log the user out
-        /// </summary>
-        /// <returns></returns>
-        [Route("logout")]
-        public async Task<IActionResult> SignOutAsync()
-        {
-            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
-            return Content("done");
         }
 
         [Route("test")]
