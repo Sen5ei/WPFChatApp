@@ -37,6 +37,8 @@ namespace WPFChatApp.Web.Server
         /// Default constructor
         /// </summary>
         /// <param name="context">The injected context</param>
+        /// <param name="signInManager">The Identity sign in manager</param>
+        /// <param name="userManager">The Identity user manager</param>
         public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             mContext = context;
@@ -94,7 +96,9 @@ namespace WPFChatApp.Web.Server
             var result = await mUserManager.CreateAsync(new ApplicationUser
             {
                 UserName = "ognjen",
-                Email = "ognjensredic@gmail.com"
+                Email = "ognjensredic@gmail.com",
+                FirstName = "Ognjen",
+                LastName = "Sredic"
             }, "password");
 
             if (result.Succeeded)

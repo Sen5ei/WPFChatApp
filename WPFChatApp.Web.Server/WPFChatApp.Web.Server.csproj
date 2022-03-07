@@ -13,4 +13,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WPFChatApp.Core\WPFChatApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>
