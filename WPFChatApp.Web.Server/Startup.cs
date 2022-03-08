@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using WPFChatApp.Core;
 
 namespace WPFChatApp.Web.Server
 {
@@ -37,6 +38,12 @@ namespace WPFChatApp.Web.Server
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            // Add SendGrid email sender
+            services.AddSendGridEmailSender();
+
+            // Add general email template sender
+            services.AddEmailTemplateSender();
 
             // Add ApplicationDbContext to DI
             services.AddDbContext<ApplicationDbContext>(options => 

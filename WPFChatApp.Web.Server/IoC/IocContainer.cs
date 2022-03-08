@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using WPFChatApp.Core;
 
 namespace WPFChatApp.Web.Server
 {
@@ -13,6 +14,16 @@ namespace WPFChatApp.Web.Server
         /// The scoped instance of hte <see cref="ApplicationDbContext"/>
         /// </summary>
         public static ApplicationDbContext ApplicationDbContext => IocContainer.Provider.GetService<ApplicationDbContext>();
+
+        /// <summary>
+        /// The transient instance of the <see cref="IEmailSender"/>
+        /// </summary>
+        public static IEmailSender EmailSender => IocContainer.Provider.GetService<IEmailSender>();
+
+        /// <summary>
+        /// The transient instance of the <see cref="IEmailTemplateSender"/>
+        /// </summary>
+        public static IEmailTemplateSender EmailTemplateSender => IocContainer.Provider.GetService<IEmailTemplateSender>();
     }
 
     /// <summary>
