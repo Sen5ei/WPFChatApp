@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using WPFChatApp.Core;
+using static Dna.FrameworkDI;
 
 namespace WPFChatApp.Web.Server
 {
@@ -17,11 +18,11 @@ namespace WPFChatApp.Web.Server
         /// <returns></returns>
         public static async Task<SendEmailResponse> SendUserVerificationEmailAsync(string displayName, string email, string verificationUrl)
         {
-            return await IoC.EmailTemplateSender.SendGeneralEmailAsync(new SendEmailDetails
+            return await DI.EmailTemplateSender.SendGeneralEmailAsync(new SendEmailDetails
             {
                 IsHTML = true,
-                FromEmail = IocContainer.Configuration["WPFChatAppSettings:SendEmailFromEmail"],
-                FromName = IocContainer.Configuration["WPFChatAppSettings:SendEmailFromName"],
+                FromEmail = Configuration["WPFChatAppSettings:SendEmailFromEmail"],
+                FromName = Configuration["WPFChatAppSettings:SendEmailFromName"],
                 ToEmail = email,
                 ToName = displayName,
                 Subject = "Verify Your Email - WPFChatApp"

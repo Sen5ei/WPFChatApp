@@ -1,0 +1,23 @@
+[2022-03-08 04:41:09] User profile is available. Using 'C:\Users\ognje\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-03-08 04:41:11] Failed to authenticate HTTPS connection.
+[2022-03-08 04:41:11] Failed to authenticate HTTPS connection.
+[2022-03-08 04:41:13] Request starting HTTP/1.1 GET https://localhost:5001/  
+[2022-03-08 04:41:13] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller WPFChatApp.Web.Server.HomeController (WPFChatApp.Web.Server).
+[2022-03-08 04:41:13] Executing action method WPFChatApp.Web.Server.HomeController.Index (WPFChatApp.Web.Server) - Validation state: Valid
+[2022-03-08 04:41:14] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2022-03-08 04:41:14] Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2022-03-08 04:41:14] Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2022-03-08 04:41:14] Executed action method WPFChatApp.Web.Server.HomeController.Index (WPFChatApp.Web.Server), returned result Microsoft.AspNetCore.Mvc.ViewResult in 789.5023ms.
+[2022-03-08 04:41:14] Executing ViewResult, running view Index.
+[2022-03-08 04:41:14] Executed ViewResult - view Index executed in 125.2621ms.
+[2022-03-08 04:41:14] Executed action WPFChatApp.Web.Server.HomeController.Index (WPFChatApp.Web.Server) in 1176.6205ms
+[2022-03-08 04:41:15] Request finished in 1558.2505ms 200 text/html; charset=utf-8
+[2022-03-08 04:41:15] Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+[2022-03-08 04:41:15] Request finished in 13.0149ms 404 

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WPFChatApp.Core;
+using static Dna.FrameworkDI;
 
 namespace WPFChatApp.Web.Server
 {
@@ -18,7 +19,7 @@ namespace WPFChatApp.Web.Server
         public async Task<SendEmailResponse> SendEmailAsync(SendEmailDetails details)
         {
             // Get the SendGrid key
-            var apiKey = IocContainer.Configuration["SendGridKey"];
+            var apiKey = Configuration["SendGridKey"];
 
             // Create a new SendGrid client
             var client = new SendGridClient(apiKey);

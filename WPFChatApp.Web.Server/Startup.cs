@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Dna;
+using Dna.AspNet;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,8 +27,7 @@ namespace WPFChatApp.Web.Server
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
-            // Share the configuration
-            IocContainer.Configuration = configuration;
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -47,7 +48,7 @@ namespace WPFChatApp.Web.Server
 
             // Add ApplicationDbContext to DI
             services.AddDbContext<ApplicationDbContext>(options => 
-                options.UseSqlServer(IocContainer.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Framework.Construction.Configuration.GetConnectionString("DefaultConnection")));
 
             // AddIdentity adds cookie based authentication
             // Adds scoped classes for things like UserManager, SignInManager, PasswordHashers...
@@ -78,14 +79,14 @@ namespace WPFChatApp.Web.Server
                         ValidateIssuerSigningKey = true,
 
                         // Set issuer
-                        ValidIssuer = IocContainer.Configuration["Jwt:Issuer"],
+                        ValidIssuer = Framework.Construction.Configuration["Jwt:Issuer"],
                         // Set audience
-                        ValidAudience = IocContainer.Configuration["Jwt:Audience"],
+                        ValidAudience = Framework.Construction.Configuration["Jwt:Audience"],
 
                         // Set signing key
                         IssuerSigningKey = new SymmetricSecurityKey(
                             // Get our secret key from configuration
-                            Encoding.UTF8.GetBytes(IocContainer.Configuration["Jwt:SecretKey"]))
+                            Encoding.UTF8.GetBytes(Framework.Construction.Configuration["Jwt:SecretKey"]))
                     };
                 });
 
@@ -125,8 +126,8 @@ namespace WPFChatApp.Web.Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            // Store instance of the DI service provider so our application can access it anywhere
-            IocContainer.Provider = serviceProvider;
+            // Use Dna Framework
+            app.UseDnaFramework();
 
             // Setup identity
             app.UseAuthentication();
