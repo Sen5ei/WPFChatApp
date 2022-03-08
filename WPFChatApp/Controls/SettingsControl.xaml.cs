@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using WPFChatApp.Core;
+using static WPFChatApp.DI;
 
 namespace WPFChatApp
 {
@@ -13,7 +13,7 @@ namespace WPFChatApp
             InitializeComponent();
 
             // Set data context to settings view model
-            DataContext = IoC.Settings;
+            DataContext = ViewModelSettings;
         }
     }
 }

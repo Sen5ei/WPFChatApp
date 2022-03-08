@@ -46,7 +46,7 @@ namespace WPFChatApp.Core
             var timeLogString = LogTime ? $"[{ currentTime}] " : "";
 
             // Write the message to the log file
-            IoC.File.WriteTextToFileAsync($"{timeLogString}{message}{Environment.NewLine}", FilePath, append: true);
+            CoreDI.FileManager.WriteTextToFileAsync($"{timeLogString}{message}{Environment.NewLine}", FilePath, append: true);
         }
 
         #endregion

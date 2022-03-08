@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:WPFChatApp"
              xmlns:core="clr-namespace:WPFChatApp.Core;assembly=WPFChatApp.Core"
              mc:Ignorable="d" >
-    
-    <ItemsControl d:DataContext="{x:Static core:MenuDesignModel.Instance}"
+
+    <ItemsControl d:DataContext="{x:Static local:MenuDesignModel.Instance}"
                   ItemsSource="{Binding Items}"
                   Background="White">
 

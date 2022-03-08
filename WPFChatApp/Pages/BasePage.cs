@@ -1,10 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using System.Threading.Tasks;
-using System.Windows.Media.Animation;
-using System;
-using WPFChatApp.Core;
 using System.ComponentModel;
+using Dna;
 
 namespace WPFChatApp
 {
@@ -191,8 +189,13 @@ namespace WPFChatApp
         /// </summary>
         public BasePage() : base()
         {
-            // Create a default view model
-            ViewModel = IoC.Get<VM>();
+            // If in design time mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Just use the new instance of the VM
+                ViewModel = new VM();
+            else
+                // Create a default view model
+                ViewModel = Framework.Service<VM>() ?? new VM();
         }
 
         /// <summary>
@@ -205,8 +208,17 @@ namespace WPFChatApp
             if (specificViewModel != null)
                 ViewModel = specificViewModel;
             else
-                // Create a default view model
-                ViewModel = IoC.Get<VM>();
+            {
+                // If in design time mode...
+                if (DesignerProperties.GetIsInDesignMode(this))
+                    // Just use the new instance of the VM
+                    ViewModel = new VM();
+                else
+                {
+                    // Create a default view model
+                    ViewModel = Framework.Service<VM>() ?? new VM();
+                }
+            }
         }
 
         #endregion

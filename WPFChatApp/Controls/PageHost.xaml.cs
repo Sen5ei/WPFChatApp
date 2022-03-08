@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WPFChatApp.Core;
+using static WPFChatApp.DI;
 
 namespace WPFChatApp
 {
@@ -58,7 +58,7 @@ namespace WPFChatApp
             // If we are in DesignMode, show the current page
             // as the dependency property does not fire
             if (DesignerProperties.GetIsInDesignMode(this))
-                NewPage.Content = IoC.Application.CurrentPage.ToBasePage();
+                NewPage.Content = ViewModelApplication.CurrentPage.ToBasePage();
         }
 
         #endregion
