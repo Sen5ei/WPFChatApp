@@ -420,8 +420,8 @@ namespace WPFChatApp
 
             // Get margin around window
             CurrentMonitorMargin = new Thickness(
-                (lCurrentScreenInfo.RCMonitor.Left - lCurrentScreenInfo.RCWork.Left) / mMonitorDpi.Value.DpiScaleX,
-                (lCurrentScreenInfo.RCMonitor.Top - lCurrentScreenInfo.RCWork.Top) / mMonitorDpi.Value.DpiScaleY,
+                (lCurrentScreenInfo.RCWork.Left - lCurrentScreenInfo.RCMonitor.Left) / mMonitorDpi.Value.DpiScaleX,
+                (lCurrentScreenInfo.RCWork.Top - lCurrentScreenInfo.RCMonitor.Top) / mMonitorDpi.Value.DpiScaleY,
                 (lCurrentScreenInfo.RCMonitor.Right - lCurrentScreenInfo.RCWork.Right) / mMonitorDpi.Value.DpiScaleX,
                 (lCurrentScreenInfo.RCMonitor.Bottom - lCurrentScreenInfo.RCWork.Bottom) / mMonitorDpi.Value.DpiScaleY
                 );
