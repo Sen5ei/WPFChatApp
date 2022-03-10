@@ -295,7 +295,7 @@ namespace WPFChatApp
                     bearerToken: token);
 
                 // If the response has an error...
-                if (await result.DisplayErrorIfFailedAsync("Load User Details Failed"))
+                if (await result.HandleErrorIfFailedAsync("Load User Details Failed"))
                     // We are done
                     return;
 
@@ -451,7 +451,7 @@ namespace WPFChatApp
                     bearerToken: credentials.Token);
 
                 // If the response has an error...
-                if (await result.DisplayErrorIfFailedAsync($"Change Password"))
+                if (await result.HandleErrorIfFailedAsync($"Change Password"))
                 {
                     // Log it
                     Logger.LogDebugSource($"Failed to change password. {result.ErrorMessage}");
@@ -549,7 +549,7 @@ namespace WPFChatApp
                 bearerToken: credentials.Token);
 
             // If the response has an error...
-            if (await result.DisplayErrorIfFailedAsync($"Update {displayName}"))
+            if (await result.HandleErrorIfFailedAsync($"Update {displayName}"))
             {
                 // Log it
                 Logger.LogDebugSource($"Failed to update {displayName}. {result.ErrorMessage}");

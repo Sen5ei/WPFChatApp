@@ -75,7 +75,7 @@ namespace WPFChatApp
                     });
 
                 // If the response has an error...
-                if (await result.DisplayErrorIfFailedAsync("Login Failed"))
+                if (await result.HandleErrorIfFailedAsync("Login Failed"))
 
                 // We are done
                 return;

@@ -54,7 +54,11 @@ namespace WPFChatApp
                 // Set the column definition width to the new value
                 (d as PasswordEntryControl).LabelColumnDefinition.Width = (GridLength)e.NewValue;
             }
+
+            // Making ex available for developer on break
+#pragma warning disable CS0168
             catch (Exception)
+#pragma warning restore CS0168
             {
                 // Make developer aware of potential issue
                 Debugger.Break();
