@@ -33,12 +33,13 @@ namespace WPFChatApp.Web.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.Configure<CookiePolicyOptions>(options =>
-            //{
-            //    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-            //    options.CheckConsentNeeded = context => true;
-            //    options.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
+            // Add proper cookie request to follow GDPR 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             // Add SendGrid email sender
             services.AddSendGridEmailSender();
@@ -120,7 +121,9 @@ namespace WPFChatApp.Web.Server
                 //options.InputFormatters.Add(new XmlSerializerInputFormatter());
                 //options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
 
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            })
+                // State we are a minimum compatibility of 2.1 onwards
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -143,14 +146,18 @@ namespace WPFChatApp.Web.Server
             {
                 // Just show generic error page
                 app.UseExceptionHandler("/Home/Error");
+
+                // In production, tell the browsers (via the HSTS header) to only try and access our site via HTTPS, not HTTP
                 app.UseHsts();
             }
 
+            // Redirect all calls from HTTP to HTTPS
             app.UseHttpsRedirection();
 
             // Serve static files
             app.UseStaticFiles();
 
+            // Force non-essential cookies to only store if the user has consented
             app.UseCookiePolicy();
 
             // Setup MVC routes
