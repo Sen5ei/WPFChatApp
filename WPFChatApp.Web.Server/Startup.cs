@@ -168,6 +168,9 @@ namespace WPFChatApp.Web.Server
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Make sure we have the database
+            serviceProvider.GetService<ApplicationDbContext>().Database.EnsureCreated();
         }
     }
 }
