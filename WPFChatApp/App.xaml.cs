@@ -4,6 +4,7 @@ using System.Windows;
 using WPFChatApp.Core;
 using WPFChatApp.Relational;
 using static WPFChatApp.DI;
+using static WPFChatApp.Core.CoreDI;
 using static Dna.FrameworkDI;
 
 namespace WPFChatApp
@@ -59,7 +60,7 @@ namespace WPFChatApp
             await ClientDataStore.EnsureDataStoreAsync();
 
             // Load new settings
-            await ViewModelSettings.LoadAsync();
+            TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
         }
     }
 }

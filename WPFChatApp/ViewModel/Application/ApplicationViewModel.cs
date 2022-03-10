@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using WPFChatApp.Core;
 using static WPFChatApp.DI;
+using static WPFChatApp.Core.CoreDI;
 
 namespace WPFChatApp
 {
@@ -9,10 +10,21 @@ namespace WPFChatApp
     /// </summary>
     public class ApplicationViewModel : BaseViewModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// True if the settings menu should be shown
+        /// </summary>
+        private bool mSettingsMenuVisible;
+
+        #endregion
+
+        #region Public Properties
+
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Chat;
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
 
         /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
@@ -30,7 +42,27 @@ namespace WPFChatApp
         /// <summary>
         /// True if the settings menu should be shown
         /// </summary>
-        public bool SettingsMenuVisible { get; set; }
+        public bool SettingsMenuVisible
+        {
+            get => mSettingsMenuVisible;
+            set
+            {
+                // If property has not changed...
+                if (mSettingsMenuVisible == value)
+                    // Ignore
+                    return;
+
+                // Set the backing field
+                mSettingsMenuVisible = value;
+
+                // If the settings menu is now visible...
+                if (value)
+                    // Reload settings
+                    TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Navigate to the specified page
@@ -64,17 +96,10 @@ namespace WPFChatApp
         /// Handles what happens when we have successfully logged in
         /// </summary>
         /// <param name="loginResult">The results from the successful login</param>
-        public async Task HandleSuccessfulLoginAsync(LoginResultApiModel loginResult)
+        public async Task HandleSuccessfulLoginAsync(UserProfileDetailsApiModel loginResult)
         {
             // Store this in the client data store
-            await ClientDataStore.SaveLoginCredentialsAsync(new LoginCredentialsDataModel
-            {
-                Email = loginResult.Email,
-                FirstName = loginResult.FirstName,
-                LastName = loginResult.LastName,
-                Username = loginResult.Username,
-                Token = loginResult.Token
-            });
+            await ClientDataStore.SaveLoginCredentialsAsync(loginResult.ToLoginCredentialsDataModel());
 
             // Load new settings
             await ViewModelSettings.LoadAsync();
