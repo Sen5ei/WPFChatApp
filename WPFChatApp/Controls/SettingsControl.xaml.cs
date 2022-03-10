@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Windows.Controls;
 using static WPFChatApp.DI;
 
 namespace WPFChatApp
@@ -13,7 +14,13 @@ namespace WPFChatApp
             InitializeComponent();
 
             // Set data context to settings view model
-            DataContext = ViewModelSettings;
+
+            // If we are in design mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Create new instance of settings view model
+                DataContext = new SettingsViewModel();
+            else
+                DataContext = ViewModelSettings;
         }
     }
 }

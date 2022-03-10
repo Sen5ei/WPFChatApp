@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WPFChatApp.Core;
-using static WPFChatApp.DI;
 
 namespace WPFChatApp
 {
@@ -58,7 +57,7 @@ namespace WPFChatApp
             // If we are in DesignMode, show the current page
             // as the dependency property does not fire
             if (DesignerProperties.GetIsInDesignMode(this))
-                NewPage.Content = ViewModelApplication.CurrentPage.ToBasePage();
+                NewPage.Content = new ApplicationViewModel().CurrentPage.ToBasePage();
         }
 
         #endregion
