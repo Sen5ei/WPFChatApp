@@ -21,7 +21,8 @@
         /// </summary>
         public SettingsDesignModel()
         {
-            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Ognjen Sredic" };
+            FirstName = new TextEntryViewModel { Label = "Fist Name", OriginalText = "Ognjen" };
+            LastName = new TextEntryViewModel { Label = "Last Name", OriginalText = "Sredic" };
             Username = new TextEntryViewModel { Label = "Username", OriginalText = "ognjen" };
             Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
             Email = new TextEntryViewModel { Label = "Email", OriginalText = "ognjensredic@gmail.com" };
