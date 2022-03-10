@@ -6,6 +6,8 @@ using WPFChatApp.Relational;
 using static WPFChatApp.DI;
 using static WPFChatApp.Core.CoreDI;
 using static Dna.FrameworkDI;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WPFChatApp
 {
@@ -59,8 +61,32 @@ namespace WPFChatApp
             // Ensure the client data store 
             await ClientDataStore.EnsureDataStoreAsync();
 
+            // Monitor for server connection status
+            MonitorServerStatus();
+
             // Load new settings
             TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
+        }
+
+        /// <summary>
+        /// Monitors if the local server is up, running and reachable, by periodically hitting it up
+        /// </summary>
+        private void MonitorServerStatus()
+        {
+            // Create a new endpoint watcher
+            var httpWatcher = new HttpEndpointChecker(
+                // Checking local host
+                "http://localhost:5000",
+                // Every 20 seconds
+                interval: 20000,
+                // Pass in the DI logger
+                logger: Framework.Provider.GetService<ILogger>(),
+                // On change...
+                stateChangedCallback: (result) =>
+                {
+                    // Update the view model property with the new result
+                    ViewModelApplication.ServerReachable = result;
+                });
         }
     }
 }

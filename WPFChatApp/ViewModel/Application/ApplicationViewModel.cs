@@ -68,6 +68,11 @@ namespace WPFChatApp
         /// </summary>
         public SideMenuContent CurrentSideMenuContent { get; set; } = SideMenuContent.Chat;
 
+        /// <summary>
+        /// Determines if the application has network access to the server
+        /// </summary>
+        public bool ServerReachable { get; set; } = true;
+
         #endregion
 
         #region Public Commands
