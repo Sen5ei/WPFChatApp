@@ -91,7 +91,7 @@
                                local:ClipFromBorderProperty.Value="True"
                                local:FadeInImageOnLoadProperty.Value="True"
                                Source="{Binding LocalFilePath, NotifyOnTargetUpdated=True}" 
-                               MaxWidth="600"/>
+                               MaxWidth="300"/>
 
                     </Border>
                     

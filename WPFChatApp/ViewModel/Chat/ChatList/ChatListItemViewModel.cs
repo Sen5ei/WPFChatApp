@@ -83,7 +83,7 @@ namespace WPFChatApp
 
             ViewModelApplication.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
             {
-                DisplayTitle = "Parnell, Me",
+                DisplayTitle = "Parnell",
 
                 Items = new ObservableCollection<ChatMessageListItemViewModel>
                 {
